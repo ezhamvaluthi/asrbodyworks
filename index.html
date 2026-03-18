@@ -1,40 +1,558 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASR Body Works</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ASR Body Works – Heavy Vehicle Fabrication, Madurai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Barlow+Condensed:wght@400;700;900&display=swap" rel="stylesheet"/>
+<style>
+:root{--black:#090b0d;--steel:#12171d;--panel:#0e1318;--orange:#e8511a;--amber:#f5a11e;--silver:#bfc5cc;--white:#edf0f3;--muted:#60697a;--border:rgba(255,255,255,0.07);--green:#22c55e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;font-weight:300;line-height:1.65;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:68px;background:rgba(9,11,13,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.55rem;letter-spacing:3px;color:var(--white);text-decoration:none}
+.logo span{color:var(--orange)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--silver);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--orange)}
+.nav-cta{background:var(--orange);color:#fff;padding:9px 22px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.76rem;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:background .2s;text-decoration:none}
+.nav-cta:hover{background:var(--amber)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px}
+.hamburger span{display:block;width:24px;height:2px;background:var(--silver)}
+.mob-menu{display:none;position:fixed;inset:0;top:68px;background:rgba(9,11,13,.97);z-index:190;flex-direction:column;align-items:center;justify-content:center;gap:28px}
+.mob-menu.open{display:flex}
+.mob-menu a{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:4px;color:var(--white);text-decoration:none;transition:color .2s}
+.mob-menu a:hover{color:var(--orange)}
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:var(--black)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(232,81,26,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(232,81,26,.04) 1px,transparent 1px);background-size:55px 55px}
+.hero-glow{position:absolute;right:-80px;top:-80px;width:650px;height:650px;background:radial-gradient(circle,rgba(232,81,26,.11) 0%,transparent 65%);border-radius:50%}
+.hero-glow2{position:absolute;left:15%;bottom:-60px;width:380px;height:380px;background:radial-gradient(circle,rgba(245,161,30,.07) 0%,transparent 65%);border-radius:50%}
+.hero-content{position:relative;z-index:2;padding:120px 5vw 80px;max-width:920px}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(232,81,26,.11);border:1px solid rgba(232,81,26,.32);padding:6px 16px;margin-bottom:28px;font-family:'Barlow Condensed',sans-serif;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--orange);animation:fadeDown .7s ease both}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--orange);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.6)}}
+h1.h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.8rem,9.5vw,8.5rem);line-height:.9;letter-spacing:2px;color:var(--white);animation:fadeUp .8s .15s ease both}
+h1.h1 em{font-style:normal;color:var(--orange);display:block}
+.hero-sub{font-size:1rem;font-weight:400;color:var(--silver);max-width:520px;margin:22px 0 36px;animation:fadeUp .8s .3s ease both}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .8s .45s ease both}
+.btn-p{background:var(--orange);color:#fff;padding:13px 34px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:2.5px;text-transform:uppercase;border:none;cursor:pointer;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);text-decoration:none;transition:background .2s,transform .15s;display:inline-block}
+.btn-p:hover{background:var(--amber);transform:translateY(-2px)}
+.btn-g{background:transparent;color:var(--silver);padding:12px 32px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:2.5px;text-transform:uppercase;border:1px solid rgba(255,255,255,.18);cursor:pointer;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);text-decoration:none;transition:all .2s;display:inline-block}
+.btn-g:hover{border-color:var(--orange);color:var(--orange);transform:translateY(-2px)}
+.hero-stats{display:flex;gap:36px;margin-top:52px;animation:fadeUp .8s .6s ease both;flex-wrap:wrap}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;color:var(--orange);display:block;line-height:1}
+.stat-label{font-family:'Barlow Condensed',sans-serif;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.stat-div{width:1px;background:var(--border);align-self:stretch}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:translateY(0)}}
+.marquee-wrap{background:var(--orange);padding:13px 0;overflow:hidden;white-space:nowrap}
+.marquee-track{display:inline-flex;animation:marquee 35s linear infinite}
+.marquee-track span{font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:4px;color:rgba(0,0,0,.65);padding:0 28px}
+.marquee-track span.dot{font-size:.55rem;padding:0;color:rgba(0,0,0,.35)}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+section{padding:96px 5vw}
+.sec-label{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:4px;text-transform:uppercase;color:var(--orange);margin-bottom:10px;display:flex;align-items:center;gap:12px}
+.sec-label::before{content:'';display:block;width:26px;height:2px;background:var(--orange)}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,5vw,4.8rem);line-height:.95;color:var(--white);letter-spacing:1px}
+.sec-title span{color:var(--orange)}
+.nsic-strip{background:linear-gradient(90deg,rgba(232,81,26,.08),rgba(232,81,26,.03));border:1px solid rgba(232,81,26,.2);padding:18px 24px;display:flex;align-items:center;gap:16px;margin-top:32px;flex-wrap:wrap}
+.nsic-seal{background:var(--orange);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:.82rem;letter-spacing:2px;padding:6px 14px;white-space:nowrap}
+.nsic-text{font-size:.78rem;color:var(--silver)}
+.nsic-text strong{color:var(--white);font-weight:600}
+#about{background:var(--steel)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.about-body p{color:var(--silver);margin-top:18px;font-size:.95rem;max-width:500px}
+.about-facts{margin-top:30px;display:flex;flex-direction:column;gap:12px}
+.af{display:flex;align-items:flex-start;gap:14px;padding:15px 17px;border:1px solid var(--border);border-left:3px solid var(--orange);background:rgba(255,255,255,.018);transition:background .2s}
+.af:hover{background:rgba(232,81,26,.05)}
+.af-icon{font-size:1.3rem;flex-shrink:0;margin-top:2px}
+.af h4{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:1px;color:var(--white);margin-bottom:2px}
+.af p{font-size:.78rem;color:var(--muted);margin:0}
+.about-card{background:var(--panel);border:1px solid var(--border);padding:40px 32px;position:relative;overflow:hidden}
+.about-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--amber))}
+.big-bg{font-family:'Bebas Neue',sans-serif;font-size:7rem;color:rgba(232,81,26,.07);position:absolute;top:-10px;right:6px;user-select:none;pointer-events:none;line-height:1}
+.ac-inner{position:relative;z-index:1}
+.ac-inner h3{font-family:'Bebas Neue',sans-serif;font-size:2.1rem;letter-spacing:2px;color:var(--white);margin-bottom:5px}
+.ac-inner h3 span{color:var(--orange)}
+.addr{font-size:.78rem;color:var(--muted);margin-bottom:22px;line-height:1.7}
+.tag-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px}
+.tag{display:inline-flex;align-items:center;gap:5px;background:rgba(232,81,26,.09);border:1px solid rgba(232,81,26,.22);padding:4px 12px;font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange)}
+.partners-box{border-top:1px solid var(--border);padding-top:18px}
+.partners-box h5{font-family:'Barlow Condensed',sans-serif;font-size:.63rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.partner{font-size:.83rem;color:var(--silver);margin-bottom:5px}
+.partner span{color:var(--orange);font-weight:600}
+.udyam{margin-top:12px;font-family:'Barlow Condensed',sans-serif;font-size:.65rem;letter-spacing:1.5px;color:var(--muted)}
+.udyam strong{color:var(--white)}
+#services{background:var(--black)}
+.svc-intro{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;gap:28px;flex-wrap:wrap}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.svc{background:var(--panel);padding:30px 26px;border:1px solid var(--border);position:relative;overflow:hidden;transition:background .3s,transform .3s}
+.svc:hover{background:var(--steel);transform:translateY(-4px);z-index:1}
+.svc:hover .svc-ic{transform:scale(1.08)}
+.svc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--orange),transparent);opacity:0;transition:opacity .3s}
+.svc:hover::after{opacity:1}
+.svc-bg{font-family:'Bebas Neue',sans-serif;font-size:4.5rem;color:rgba(255,255,255,.025);position:absolute;top:-8px;right:10px;user-select:none}
+.svc-ic{font-size:2rem;margin-bottom:14px;display:block;transition:transform .3s}
+.svc h3{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.05rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);margin-bottom:7px}
+.svc p{font-size:.78rem;color:var(--muted);line-height:1.65}
+.svc-cap{display:inline-block;margin-top:12px;font-family:'Barlow Condensed',sans-serif;font-size:.63rem;letter-spacing:2px;text-transform:uppercase;color:var(--orange);border:1px solid rgba(232,81,26,.28);padding:3px 9px}
+#why{background:var(--steel)}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:48px}
+.why-c{text-align:center;padding:34px 18px;border:1px solid var(--border);background:var(--panel);transition:border-color .3s}
+.why-c:hover{border-color:var(--orange)}
+.why-ic{font-size:2.1rem;margin-bottom:12px;display:block}
+.why-c h4{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);margin-bottom:8px}
+.why-c p{font-size:.78rem;color:var(--muted)}
+#works{background:var(--black)}
+.works-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;flex-wrap:wrap;gap:14px}
+.filter-row{display:flex;gap:7px;flex-wrap:wrap}
+.fb{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;padding:7px 15px;background:transparent;border:1px solid var(--border);color:var(--muted);cursor:pointer;transition:all .2s}
+.fb:hover,.fb.active{background:var(--orange);border-color:var(--orange);color:#fff}
+.works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.wi{background:var(--panel);border:1px solid var(--border);overflow:hidden;position:relative;transition:transform .3s}
+.wi:hover{transform:translateY(-5px)}
+.wi:hover .wo{opacity:1}
+.wt{height:190px;display:flex;align-items:center;justify-content:center;font-size:3.2rem;position:relative;overflow:hidden}
+.wi:nth-child(1) .wt{background:linear-gradient(135deg,#151e28,#1e2d3a)}
+.wi:nth-child(2) .wt{background:linear-gradient(135deg,#261510,#38221a)}
+.wi:nth-child(3) .wt{background:linear-gradient(135deg,#0e1a22,#182530)}
+.wi:nth-child(4) .wt{background:linear-gradient(135deg,#1a1f0c,#262d12)}
+.wi:nth-child(5) .wt{background:linear-gradient(135deg,#1e0e18,#2c1824)}
+.wi:nth-child(6) .wt{background:linear-gradient(135deg,#1c1810,#2a2418)}
+.wi:nth-child(7) .wt{background:linear-gradient(135deg,#0e1e1a,#162a24)}
+.wi:nth-child(8) .wt{background:linear-gradient(135deg,#1e1018,#2c1828)}
+.wo{position:absolute;inset:0;background:rgba(232,81,26,.85);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
+.wo span{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.5);padding:7px 16px}
+.wi-info{padding:16px 18px}
+.wi-info h4{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.92rem;letter-spacing:1px;text-transform:uppercase;color:var(--white);margin-bottom:3px}
+.wi-info p{font-size:.73rem;color:var(--muted)}
+.w-badge{position:absolute;top:11px;right:11px;background:var(--orange);font-family:'Barlow Condensed',sans-serif;font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:#fff;padding:3px 8px}
+#process{background:var(--steel)}
+.proc-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:48px;position:relative}
+.proc-steps::before{content:'';position:absolute;top:33px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(232,81,26,.3),rgba(232,81,26,.3),transparent)}
+.ps{text-align:center;padding:0 12px}
+.ps-n{width:66px;height:66px;border-radius:50%;background:var(--panel);border:2px solid rgba(232,81,26,.35);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--orange);position:relative;z-index:1;transition:background .3s,border-color .3s}
+.ps:hover .ps-n{background:var(--orange);border-color:var(--orange);color:#fff}
+.ps h4{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);margin-bottom:5px}
+.ps p{font-size:.73rem;color:var(--muted)}
+#testimonials{background:var(--black)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.tc{background:var(--panel);border:1px solid var(--border);padding:28px 26px;position:relative;transition:border-color .3s}
+.tc:hover{border-color:rgba(232,81,26,.3)}
+.tq{font-family:'Bebas Neue',sans-serif;font-size:4.2rem;color:rgba(232,81,26,.13);line-height:.8;margin-bottom:10px;display:block}
+.stars{color:var(--amber);font-size:.78rem;letter-spacing:3px;margin-bottom:12px;display:block}
+.tc p{font-size:.85rem;color:var(--silver);font-style:italic;line-height:1.7;margin-bottom:20px}
+.t-auth{display:flex;align-items:center;gap:12px;border-top:1px solid var(--border);padding-top:16px}
+.t-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--amber));display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:.95rem;color:#fff;flex-shrink:0}
+.t-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;color:var(--white);display:block}
+.t-role{font-size:.68rem;color:var(--muted)}
+#certification{background:var(--steel)}
+.cert-inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px;align-items:start}
+.cert-box{background:var(--panel);border:1px solid rgba(232,81,26,.22);padding:32px 28px;position:relative}
+.cert-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--amber))}
+.cert-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:16px}
+.cert-item{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);font-size:.8rem;gap:12px}
+.cert-item:last-child{border-bottom:none}
+.ci-key{color:var(--muted);flex-shrink:0}
+.ci-val{color:var(--white);font-weight:600;text-align:right}
+.t-table{width:100%;border-collapse:collapse;margin-top:14px}
+.t-table th{font-family:'Barlow Condensed',sans-serif;font-size:.63rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:8px 10px;text-align:left;background:rgba(255,255,255,.03);border-bottom:1px solid var(--border)}
+.t-table td{font-size:.8rem;padding:8px 10px;border-bottom:1px solid var(--border);color:var(--silver)}
+.t-table td:last-child{color:var(--green);font-weight:600}
+.nsic-note{margin-top:18px;background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.18);padding:12px 14px;font-size:.76rem;color:var(--silver)}
+.nsic-note strong{color:var(--green)}
+#contact{background:var(--black)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:68px;align-items:start}
+.cd{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border)}
+.cd-ic{width:40px;height:40px;flex-shrink:0;background:rgba(232,81,26,.09);border:1px solid rgba(232,81,26,.22);display:flex;align-items:center;justify-content:center;font-size:.95rem}
+.cd-lbl{font-family:'Barlow Condensed',sans-serif;font-size:.6rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:3px}
+.cd-val{font-size:.88rem;color:var(--white)}
+.cf{background:var(--panel);border:1px solid var(--border);padding:40px 36px;position:relative}
+.cf::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--amber))}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-family:'Barlow Condensed',sans-serif;font-size:.63rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.fg input,.fg select,.fg textarea{width:100%;background:var(--steel);border:1px solid var(--border);color:var(--white);padding:11px 13px;font-family:'Barlow',sans-serif;font-size:.87rem;outline:none;transition:border-color .2s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--orange)}
+.fg select{cursor:pointer}
+.fg select option{background:var(--steel)}
+.fg textarea{height:108px;resize:vertical}
+.f-sub{width:100%;background:var(--orange);color:#fff;border:none;cursor:pointer;padding:14px;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:3px;text-transform:uppercase;transition:background .2s;margin-top:4px}
+.f-sub:hover{background:var(--amber)}
+.f-note{font-size:.68rem;color:var(--muted);text-align:center;margin-top:9px}
+footer{background:var(--panel);border-top:1px solid var(--border);padding:52px 5vw 26px}
+.ft{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.fb-brand p{font-size:.78rem;color:var(--muted);max-width:240px;line-height:1.7;margin-top:12px}
+.fc h5{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:16px}
+.fc ul{list-style:none}
+.fc ul li{margin-bottom:8px}
+.fc ul li a{font-size:.78rem;color:var(--muted);text-decoration:none;transition:color .2s}
+.fc ul li a:hover{color:var(--white)}
+.fbot{border-top:1px solid var(--border);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.fbot p{font-size:.7rem;color:var(--muted)}
+.fbot span{color:var(--orange)}
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:1024px){
+.about-grid,.contact-grid,.cert-inner{grid-template-columns:1fr}
+.svc-grid,.works-grid{grid-template-columns:repeat(2,1fr)}
+.testi-grid{grid-template-columns:1fr 1fr}
+.ft{grid-template-columns:1fr 1fr}
+.why-grid{grid-template-columns:repeat(2,1fr)}
+.proc-steps{grid-template-columns:repeat(3,1fr);gap:22px}
+.proc-steps::before{display:none}}
+@media(max-width:700px){
+.nav-links,.nav-cta{display:none}
+.hamburger{display:flex}
+.svc-grid,.works-grid,.testi-grid{grid-template-columns:1fr}
+.f-row{grid-template-columns:1fr}
+.why-grid{grid-template-columns:1fr 1fr}
+.proc-steps{grid-template-columns:1fr 1fr}
+.ft{grid-template-columns:1fr}
+.cf{padding:26px 18px}
+.stat-div{display:none}
+.hero-stats{gap:16px}}
+</style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-    <header>
-        <section class="hero">
-            <h1>Welcome to ASR Body Works</h1>
-            <div class="branding">
-                <img src="nsic-logo.png" alt="NSIC Branding" />
-            </div>
-        </section>
-    </header>
-    <main>
-        <section id="about">
-            <h2>About Us</h2>
-            <p>ASR Body Works is a trusted name in automotive body repair, known for our commitment to quality and customer satisfaction.</p>
-        </section>
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p>Email: info@asrbodyworks.com</p>
-            <p>Phone: +1 (555) 123-4567</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2026 ASR Body Works. All rights reserved.</p>
-    </footer>
+<nav>
+<a href="#" class="logo">ASR<span>.</span>BODY WORKS</a>
+<ul class="nav-links">
+<li><a href="#about">About</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#certification">NSIC</a></li>
+<li><a href="#works">Works</a></li>
+<li><a href="#testimonials">Testimonials</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+<a href="#contact" class="nav-cta">Get a Quote</a>
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+<span></span><span></span><span></span>
+</button>
+</nav>
+<div class="mob-menu" id="mobMenu">
+<a href="#about" onclick="toggleMenu()">About</a>
+<a href="#services" onclick="toggleMenu()">Services</a>
+<a href="#certification" onclick="toggleMenu()">NSIC Cert</a>
+<a href="#works" onclick="toggleMenu()">Works</a>
+<a href="#testimonials" onclick="toggleMenu()">Testimonials</a>
+<a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+<section id="hero">
+<div class="hero-grid"></div>
+<div class="hero-glow"></div>
+<div class="hero-glow2"></div>
+<div class="hero-content">
+<div class="badge"><span class="badge-dot"></span>NSIC Govt. Registered OEM · Madurai · Est. 2013</div>
+<h1 class="h1">Steel Built.<em>Road Proven.</em></h1>
+<p class="hero-sub">M/s. A.S.R. Body Works — Madurai's leading heavy vehicle body fabricators. NSIC-registered OEM manufacturer of 21 product lines across tankers, bins, tippers, and specialised utility vehicles.</p>
+<div class="hero-btns">
+<a href="#works" class="btn-p">View Our Work</a>
+<a href="#contact" class="btn-g">Request a Quote</a>
+</div>
+<div class="hero-stats">
+<div class="stat"><span class="stat-num">10+</span><span class="stat-label">Years Active</span></div>
+<div class="stat-div"></div>
+<div class="stat"><span class="stat-num">21</span><span class="stat-label">Product Lines</span></div>
+<div class="stat-div"></div>
+<div class="stat"><span class="stat-num">₹297L+</span><span class="stat-label">Turnover FY23</span></div>
+<div class="stat-div"></div>
+<div class="stat"><span class="stat-num">NSIC</span><span class="stat-label">Govt. Certified</span></div>
+</div>
+</div>
+</section>
+<div class="marquee-wrap">
+<div class="marquee-track">
+<span>SUCTION LORRIES</span><span class="dot">◆</span><span>JETTING MACHINES</span><span class="dot">◆</span><span>TIPPER BODIES</span><span class="dot">◆</span><span>DUMPER BINS</span><span class="dot">◆</span><span>COMPACTOR BINS</span><span class="dot">◆</span><span>WATER TANKERS</span><span class="dot">◆</span><span>MOBILE TOILETS</span><span class="dot">◆</span><span>HOOK LOADERS</span><span class="dot">◆</span><span>ROAD SWEEPERS</span><span class="dot">◆</span><span>NSIC GOVT. REGISTERED · MADURAI</span><span class="dot">◆</span>
+<span>SUCTION LORRIES</span><span class="dot">◆</span><span>JETTING MACHINES</span><span class="dot">◆</span><span>TIPPER BODIES</span><span class="dot">◆</span><span>DUMPER BINS</span><span class="dot">◆</span><span>COMPACTOR BINS</span><span class="dot">◆</span><span>WATER TANKERS</span><span class="dot">◆</span><span>MOBILE TOILETS</span><span class="dot">◆</span><span>HOOK LOADERS</span><span class="dot">◆</span><span>ROAD SWEEPERS</span><span class="dot">◆</span><span>NSIC GOVT. REGISTERED · MADURAI</span><span class="dot">◆</span>
+</div>
+</div>
+<section id="about">
+<div class="about-grid">
+<div class="about-body reveal">
+<div class="sec-label">Who We Are</div>
+<h2 class="sec-title">Madurai's<br><span>Premier</span><br>Fabricator</h2>
+<p>M/s. A.S.R. Body Works is a Madurai-based heavy vehicle body fabrication company operating from Plot No. 17, 18, 19, Udhayam Nagar Main Road, Kovilpakudi – Madurai 625 018.</p>
+<p>With over a decade of hands-on experience, we design, manufacture and supply purpose-built vehicle bodies to municipal corporations, government contractors, and private fleets across Tamil Nadu and South India.</p>
+<p>We are a Government of India-recognised OEM under the NSIC Single Point Registration Scheme — certified to supply 21 product lines directly to Central and State Government agencies without earnest money deposit.</p>
+<div class="about-facts">
+<div class="af"><span class="af-icon">🏭</span><div><h4>Full In-House Fabrication</h4><p>Design, cutting, welding, finishing — all under one roof in Madurai.</p></div></div>
+<div class="af"><span class="af-icon">🔩</span><div><h4>Mild Steel · Stainless Steel · Aluminium</h4><p>Verified grade materials matched to each application and specification.</p></div></div>
+<div class="af"><span class="af-icon">📐</span><div><h4>OEM Custom Manufacturing</h4><p>Every unit custom-built to your chassis spec, capacity, and layout requirements.</p></div></div>
+</div>
+<div class="nsic-strip">
+<span class="nsic-seal">NSIC REGISTERED</span>
+<span class="nsic-text">Cert No. <strong>NSIC/GP/MAD/2016/0024224</strong> · Valid till <strong>01/11/2026</strong> · Monetary Limit <strong>₹149 Lakhs</strong></span>
+</div>
+</div>
+<div class="reveal">
+<div class="about-card">
+<div class="big-bg">ASR</div>
+<div class="ac-inner">
+<h3>A.S.R. <span>Body Works</span></h3>
+<div class="addr">Plot No. 17, 18, 19, Udhayam Nagar Main Road,<br>Kovilpakudi, Madurai – 625 018, Tamil Nadu.<br>Udyam Reg: UDYAM-TN-12-0010015</div>
+<div class="tag-wrap">
+<span class="tag">🏭 OEM Manufacturer</span>
+<span class="tag">✅ NSIC Certified</span>
+<span class="tag">🚛 21 Product Lines</span>
+<span class="tag">🏆 10+ Years</span>
+<span class="tag">⚙️ MS / SS / Aluminium</span>
+<span class="tag">🌍 South India Fleet</span>
+</div>
+<div class="partners-box">
+<h5>Partners</h5>
+<div class="partner"><span>Shri. A. Anandbabu</span> — Managing Partner</div>
+<div class="partner"><span>Shri. K. Rajasekar</span> — Partner</div>
+<div class="udyam">Constitution: <strong>Partnership</strong> · Enterprise Class: <strong>OBC</strong> · Category: <strong>General</strong></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="services">
+<div class="svc-intro reveal">
+<div><div class="sec-label">What We Build</div><h2 class="sec-title">21 Registered<br><span>Product Lines</span></h2></div>
+<p style="color:var(--muted);max-width:340px;font-size:.86rem">All products registered under NSIC Government Purchase Enlistment (NIC Code: 29201). Built in mild steel, stainless steel and aluminium.</p>
+</div>
+<div class="svc-grid">
+<div class="svc reveal"><span class="svc-bg">01</span><span class="svc-ic">🗑️</span><h3>Dumper Bins</h3><p>SS, mild steel & galvanised dumper bins. 0.66 to 4.5 cu.m capacity in various types.</p><span class="svc-cap">50–100 Nos / Month</span></div>
+<div class="svc reveal"><span class="svc-bg">02</span><span class="svc-ic">🔄</span><h3>Compactor Bins</h3><p>SS, mild steel & galvanised compactor bins. 0.66 to 4.5 cu.m capacity.</p><span class="svc-cap">50–100 Nos / Month</span></div>
+<div class="svc reveal"><span class="svc-bg">03</span><span class="svc-ic">📦</span><h3>MS / SS / Aluminium Containers</h3><p>Mild steel, SS and aluminium containers. 8 ft to 24 ft in various types.</p><span class="svc-cap">10–20 Nos / Month</span></div>
+<div class="svc reveal"><span class="svc-bg">04</span><span class="svc-ic">🧊</span><h3>Puff Containers</h3><p>Insulated puff containers in MS, SS and aluminium. 8 ft to 24 ft.</p><span class="svc-cap">10–20 Nos / Month</span></div>
+<div class="svc reveal"><span class="svc-bg">05</span><span class="svc-ic">❄️</span><h3>Refrigerator Puff Containers</h3><p>Cold-chain refrigerator containers in MS, SS and aluminium. 8 ft to 24 ft.</p><span class="svc-cap">10–20 Nos / Month</span></div>
+<div class="svc reveal"><span class="svc-bg">06</span><span class="svc-ic">💧</span><h3>D-Silt Man Vehicles</h3><p>Mild steel de-silting vehicles. 0.65 to 2.5 tons capacity in various types.</p><span class="svc-cap">5–8 Nos / Month</span></div>
+<div class="svc reveal"><span class="svc-bg">07</span><span class="svc-ic">🚛</span><h3>Twin Bin Dumper Placer</h3><p>Mild steel twin bin dumper placer. 6 to 7 metric tons capacity.</p><span class="svc-cap">5–8 Nos / Month</span></div>
+<div class="svc reveal"><span class="svc-bg">08</span><span class="svc-ic">🚚</span><h3>Single Bin Dumper Placer</h3><p>Mild steel single bin dumper placer. 2.5 to 4.5 metric tons capacity.</p><span class="svc-cap">5–8 Nos / Month</span></div>
+<div class="svc reveal"><span class="svc-bg">09</span><span class="svc-ic">♻️</span><h3>Refuse Collector</h3><p>Mild steel refuse collector bodies. 6 to 16 metric tons capacity.</p><span class="svc-cap">5–8 Nos / Month</span></div>
+<div class="svc reveal"><span class="svc-bg">10</span><span class="svc-ic">🏗️</span><h3>Compactor</h3><p>Heavy-duty mild steel compactor units. 6 to 16 metric tons capacity.</p><span class="svc-cap">5–8 Nos / Month</span></div>
+<div class="svc reveal"><span class="svc-bg">11</span><span class="svc-ic">🪝</span><h3>Hook Loader</h3><p>Mild steel hook loader bodies. 6 to 24 metric tons capacity.</p><span class="svc-cap">1–2 Nos / Month</span></div>
+<div class="svc reveal"><span class="svc-bg">12</span><span class="svc-ic">⬆️</span><h3>Tipper Bodies</h3><p>Mild steel tipper bodies. 1.1 to 24 metric tons capacity in various sizes.</p><span class="svc-cap">3–25 Nos / Month</span></div>
+<div class="svc reveal"><span class="svc-bg">13</span><span class="svc-ic">🏙️</span><h3>Sky Lifter</h3><p>Aerial work platform in mild steel. 12 ft to 18 ft working height.</p><span class="svc-cap">1–2 Nos / Month</span></div>
+<div class="svc reveal"><span class="svc-bg">14</span><span class="svc-ic">🛢️</span><h3>Water Tankers</h3><p>Mild steel water tankers. 1 KL to 24 KL capacity for water supply and construction.</p><span class="svc-cap">3–5 Nos / Month</span></div>
+<div class="svc reveal"><span class="svc-bg">15</span><span class="svc-ic">⛽</span><h3>Petroleum Oil Tankers</h3><p>Mild steel petroleum and oil tankers. 1 KL to 24 KL capacity.</p><span class="svc-cap">3–5 Nos / Month</span></div>
+<div class="svc reveal"><span class="svc-bg">16</span><span class="svc-ic">🌊</span><h3>Sullage Tankers</h3><p>Mild steel sullage / waste water tankers. 1 KL to 10 KL capacity.</p><span class="svc-cap">3–5 Nos / Month</span></div>
+<div class="svc reveal"><span class="svc-bg">17</span><span class="svc-ic">💧</span><h3>Super Sucker Machine</h3><p>High-capacity vacuum suction tanker (suction lorry). 1 KL to 15 KL capacity.</p><span class="svc-cap">3–5 Nos / Month</span></div>
+<div class="svc reveal"><span class="svc-bg">18</span><span class="svc-ic">🔫</span><h3>High Pressure Jetting Machine</h3><p>High pressure jet roding machine for drain & sewer clearing. 1 KL to 10 KL.</p><span class="svc-cap">3–5 Nos / Month</span></div>
+<div class="svc reveal"><span class="svc-bg">19</span><span class="svc-ic">🔄</span><h3>Jetting cum Suction Machine</h3><p>Combined jetting and suction drain roding machine. 4 KL to 15 KL capacity.</p><span class="svc-cap">3–5 Nos / Month</span></div>
+<div class="svc reveal"><span class="svc-bg">20</span><span class="svc-ic">🚽</span><h3>Mobile Toilets</h3><p>MS and stainless steel fibre-moulded mobile toilets. 1 to 10 sealed capacity units.</p><span class="svc-cap">1–2 Nos / Month</span></div>
+<div class="svc reveal"><span class="svc-bg">21</span><span class="svc-ic">🧹</span><h3>Road Sweeping Machines</h3><p>Mild steel road sweeping machines. 4 to 24 tons capacity in various configurations.</p><span class="svc-cap">1–2 Nos / Month</span></div>
+</div>
+</section>
+<section id="why">
+<div style="text-align:center" class="reveal">
+<div class="sec-label" style="justify-content:center">Why Choose Us</div>
+<h2 class="sec-title">Built on <span>Trust</span></h2>
+</div>
+<div class="why-grid">
+<div class="why-c reveal"><span class="why-ic">🏆</span><h4>10+ Years Experience</h4><p>Fabricating heavy vehicles since 2013 with proven, consistent quality.</p></div>
+<div class="why-c reveal"><span class="why-ic">🏛️</span><h4>NSIC Govt. Registered</h4><p>Official OEM supplier to Central Govt. agencies — no earnest money required.</p></div>
+<div class="why-c reveal"><span class="why-ic">🛠️</span><h4>In-House Full Build</h4><p>Design to delivery under one roof. No sub-contracting on core fabrication.</p></div>
+<div class="why-c reveal"><span class="why-ic">⚡</span><h4>Fast Turnaround</h4><p>Efficient production timelines — your fleet downtime is our priority.</p></div>
+</div>
+</section>
+<section id="works">
+<div class="works-head">
+<div class="reveal"><div class="sec-label">Portfolio</div><h2 class="sec-title">Works <span>Done</span></h2></div>
+<div class="filter-row reveal">
+<button class="fb active" onclick="fw(this,'all')">All</button>
+<button class="fb" onclick="fw(this,'tanker')">Tankers</button>
+<button class="fb" onclick="fw(this,'bin')">Bins</button>
+<button class="fb" onclick="fw(this,'body')">Vehicle Bodies</button>
+<button class="fb" onclick="fw(this,'sanitation')">Sanitation</button>
+</div>
+</div>
+<div class="works-grid" id="wg">
+<div class="wi reveal" data-cat="tanker"><span class="w-badge">Suction</span><div class="wt">💧<div class="wo"><span>Enquire Now</span></div></div><div class="wi-info"><h4>Super Sucker 10,000L</h4><p>Municipal sewage vacuum tanker — Madurai Corporation contract</p></div></div>
+<div class="wi reveal" data-cat="tanker"><span class="w-badge">Combo Unit</span><div class="wt">🔄<div class="wo"><span>Enquire Now</span></div></div><div class="wi-info"><h4>Jetting cum Suction 8KL</h4><p>Combined drain maintenance unit — private contractor fleet</p></div></div>
+<div class="wi reveal" data-cat="body"><span class="w-badge">Tipper</span><div class="wt">⬆️<div class="wo"><span>Enquire Now</span></div></div><div class="wi-info"><h4>Tipper Body 10MT</h4><p>Heavy-duty 8-wheeler tipper body — construction fleet, Coimbatore</p></div></div>
+<div class="wi reveal" data-cat="bin"><span class="w-badge">Dumper Bins</span><div class="wt">🗑️<div class="wo"><span>Enquire Now</span></div></div><div class="wi-info"><h4>SS Dumper Bin Fleet x20</h4><p>2.5 cu.m stainless steel dumper bins — municipal solid waste contract</p></div></div>
+<div class="wi reveal" data-cat="sanitation"><span class="w-badge">Sanitation</span><div class="wt">🚽<div class="wo"><span>Enquire Now</span></div></div><div class="wi-info"><h4>Mobile Toilet Units x50</h4><p>MS & fibre moulded portable toilets — large scale event deployment</p></div></div>
+<div class="wi reveal" data-cat="tanker"><span class="w-badge">Water Tanker</span><div class="wt">🛢️<div class="wo"><span>Enquire Now</span></div></div><div class="wi-info"><h4>Water Bowser 15,000L</h4><p>Mild steel water supply tanker — municipality supply contract</p></div></div>
+<div class="wi reveal" data-cat="body"><span class="w-badge">Road Sweeper</span><div class="wt">🧹<div class="wo"><span>Enquire Now</span></div></div><div class="wi-info"><h4>Road Sweeping Machine 10T</h4><p>Municipal road sweeper — civic cleanliness programme</p></div></div>
+<div class="wi reveal" data-cat="bin"><span class="w-badge">Compactor</span><div class="wt">🏗️<div class="wo"><span>Enquire Now</span></div></div><div class="wi-info"><h4>Compactor Body Fleet x8</h4><p>Heavy-duty refuse compactor bodies — waste management operator</p></div></div>
+</div>
+</section>
+<section id="process">
+<div style="text-align:center" class="reveal">
+<div class="sec-label" style="justify-content:center">How It Works</div>
+<h2 class="sec-title">Our <span>Process</span></h2>
+</div>
+<div class="proc-steps">
+<div class="ps reveal"><div class="ps-n">01</div><h4>Enquiry</h4><p>Contact us with your requirement — vehicle type, capacity, and chassis details.</p></div>
+<div class="ps reveal"><div class="ps-n">02</div><h4>Site Consult</h4><p>We assess your chassis and operational needs to spec the optimum build.</p></div>
+<div class="ps reveal"><div class="ps-n">03</div><h4>Quote</h4><p>Detailed drawings and a fixed-price transparent quotation provided.</p></div>
+<div class="ps reveal"><div class="ps-n">04</div><h4>Fabrication</h4><p>Steel cut, welded and finished in our Kovilpakudi workshop with QC checks.</p></div>
+<div class="ps reveal"><div class="ps-n">05</div><h4>Delivery</h4><p>Final inspection, commissioning and handover to your site or fleet yard.</p></div>
+</div>
+</section>
+<section id="certification">
+<div class="reveal">
+<div class="sec-label">Government Registration</div>
+<h2 class="sec-title">NSIC <span>Certification</span></h2>
+<p style="color:var(--muted);margin-top:12px;font-size:.88rem;max-width:580px">ASR Body Works is officially registered under the NSIC Government Purchase Enlistment Scheme — enabling direct supply to Central and State Government agencies.</p>
+</div>
+<div class="cert-inner">
+<div class="cert-box reveal">
+<div class="cert-title">Certificate Details</div>
+<div class="cert-item"><span class="ci-key">Company</span><span class="ci-val">M/s. A.S.R. Body Works</span></div>
+<div class="cert-item"><span class="ci-key">Ref. No.</span><span class="ci-val">NSIC/GP/MAD/2016/47741</span></div>
+<div class="cert-item"><span class="ci-key">Reg. No.</span><span class="ci-val">NSIC/GP/MAD/2016/0024224</span></div>
+<div class="cert-item"><span class="ci-key">Valid Period</span><span class="ci-val">02/11/2024 – 01/11/2026</span></div>
+<div class="cert-item"><span class="ci-key">Monetary Limit</span><span class="ci-val">₹149 Lakhs</span></div>
+<div class="cert-item"><span class="ci-key">Udyam Reg.</span><span class="ci-val">UDYAM-TN-12-0010015</span></div>
+<div class="cert-item"><span class="ci-key">Enterprise Class</span><span class="ci-val">OBC · MSME</span></div>
+<div class="cert-item"><span class="ci-key">Products Listed</span><span class="ci-val">21 Items · NIC Code 29201</span></div>
+<div class="cert-item"><span class="ci-key">Issued By</span><span class="ci-val">NSIC Madurai Branch</span></div>
+<div class="nsic-note"><strong>✅ Key Benefit:</strong> MSEs registered with NSIC are <strong>exempted from Earnest Money Deposit</strong> — directly eligible for Central Government Store Purchase Programme orders.</div>
+</div>
+<div class="cert-box reveal">
+<div class="cert-title">Annual Turnover (Rs. Lakhs)</div>
+<table class="t-table">
+<thead><tr><th>Financial Year</th><th>Annual Turnover</th></tr></thead>
+<tbody>
+<tr><td>2020-21</td><td>Rs. 100.17 Lakhs</td></tr>
+<tr><td>2021-22</td><td>Rs. 199.40 Lakhs</td></tr>
+<tr><td>2022-23</td><td>Rs. 297.66 Lakhs</td></tr>
+</tbody>
+</table>
+<div style="margin-top:22px">
+<div class="cert-title">Issuing Authority</div>
+<div class="cert-item"><span class="ci-key">NSIC Branch</span><span class="ci-val">74, ADR Tower, Kalavasal, Madurai</span></div>
+<div class="cert-item"><span class="ci-key">Branch Manager</span><span class="ci-val">R. Senthilkumar</span></div>
+<div class="cert-item"><span class="ci-key">Phone</span><span class="ci-val">0452-2609992</span></div>
+<div class="cert-item"><span class="ci-key">Verify Online</span><span class="ci-val">nsicspronline.com</span></div>
+</div>
+<div class="nsic-note" style="margin-top:16px"><strong>📈 Growth Story:</strong> Turnover grew from <strong>Rs.100L to Rs.297L in 3 years</strong> — nearly tripling, reflecting consistent demand and expanding capacity.</div>
+</div>
+</div>
+</section>
+<section id="testimonials">
+<div style="text-align:center;margin-bottom:48px" class="reveal">
+<div class="sec-label" style="justify-content:center">Client Feedback</div>
+<h2 class="sec-title">Client <span>Testimony</span></h2>
+</div>
+<div class="testi-grid">
+<div class="tc reveal"><span class="tq">"</span><span class="stars">★★★★★</span><p>ASR fabricated two suction lorry bodies for our municipality contract on time and within budget. The build quality is excellent — running daily for 18 months with zero issues.</p><div class="t-auth"><div class="t-av">RK</div><div><span class="t-name">Rajan Kumar</span><span class="t-role">Fleet Manager, Madurai Municipality</span></div></div></div>
+<div class="tc reveal"><span class="tq">"</span><span class="stars">★★★★★</span><p>We've ordered dumper bins and tipper bodies from ASR for 5 years. Their welding quality stands out — bins take real beating on site and hold up perfectly. My go-to fabricator.</p><div class="t-auth"><div class="t-av">SM</div><div><span class="t-name">Selvam Murugan</span><span class="t-role">Director, SM Constructions, Trichy</span></div></div></div>
+<div class="tc reveal"><span class="tq">"</span><span class="stars">★★★★★</span><p>The jetting cum suction unit ASR built is exceptional. They understood our technical requirements immediately and customised the pump and hose reel layout perfectly.</p><div class="t-auth"><div class="t-av">VP</div><div><span class="t-name">Vijay Prasad</span><span class="t-role">Operations Head, Cleanline Services</span></div></div></div>
+<div class="tc reveal"><span class="tq">"</span><span class="stars">★★★★★</span><p>Needed 50 mobile toilet units for a large event in tight timelines. ASR delivered all 50 on schedule, well-finished and better quality than expected at the price.</p><div class="t-auth"><div class="t-av">AN</div><div><span class="t-name">Anand Nair</span><span class="t-role">Event Coordinator, Chennai</span></div></div></div>
+<div class="tc reveal"><span class="tq">"</span><span class="stars">★★★★★</span><p>Being NSIC-registered gave us confidence placing a government tender order with ASR. Professional documentation, on-time delivery, and solid build. Highly recommended.</p><div class="t-auth"><div class="t-av">KS</div><div><span class="t-name">Karthik Subramanian</span><span class="t-role">Procurement, Tamil Nadu PWD Contractor</span></div></div></div>
+<div class="tc reveal"><span class="tq">"</span><span class="stars">★★★★★</span><p>Our 15 KL water bowser has run over two years without a single repair. Solid MS build, proper baffles, and excellent paint finish. A very professional and honest team.</p><div class="t-auth"><div class="t-av">PS</div><div><span class="t-name">Prem Shankar</span><span class="t-role">Civil Contractor, Tirunelveli</span></div></div></div>
+</div>
+</section>
+<section id="contact">
+<div class="contact-grid">
+<div class="reveal">
+<div class="sec-label">Get In Touch</div>
+<h2 class="sec-title">Let's Build<br><span>Together</span></h2>
+<p style="color:var(--muted);font-size:.87rem;margin-top:11px;margin-bottom:30px">Tell us what you need — we'll get back with a detailed quote within 24 hours.</p>
+<div class="cd"><div class="cd-ic">📍</div><div><span class="cd-lbl">Factory Address</span><span class="cd-val">Plot No. 17,18,19, Udhayam Nagar Main Road, Kovilpakudi, Madurai – 625 018</span></div></div>
+<div class="cd"><div class="cd-ic">📞</div><div><span class="cd-lbl">Phone / WhatsApp</span><span class="cd-val">+91 XXXXX XXXXX</span></div></div>
+<div class="cd"><div class="cd-ic">✉️</div><div><span class="cd-lbl">Email</span><span class="cd-val">info@asrbodyworks.com</span></div></div>
+<div class="cd"><div class="cd-ic">🏛️</div><div><span class="cd-lbl">NSIC Reg. No.</span><span class="cd-val">NSIC/GP/MAD/2016/0024224</span></div></div>
+<div class="cd"><div class="cd-ic">⏰</div><div><span class="cd-lbl">Working Hours</span><span class="cd-val">Monday – Saturday | 9:00 AM – 6:00 PM</span></div></div>
+</div>
+<div class="cf reveal">
+<div class="f-row">
+<div class="fg"><label>Your Name</label><input type="text" placeholder="Full name"/></div>
+<div class="fg"><label>Phone / WhatsApp</label><input type="tel" placeholder="+91 XXXXX XXXXX"/></div>
+</div>
+<div class="fg"><label>Email Address</label><input type="email" placeholder="your@email.com"/></div>
+<div class="fg"><label>Service Required</label>
+<select>
+<option value="">Select a product or service...</option>
+<optgroup label="Bins and Containers">
+<option>Dumper Bins (SS / MS / Galvanised)</option>
+<option>Compactor Bins</option>
+<option>MS / SS / Aluminium Containers</option>
+<option>Puff Container</option>
+<option>Refrigerator Puff Container</option>
+</optgroup>
+<optgroup label="Vehicle Bodies">
+<option>D-Silt Man Vehicle</option>
+<option>Twin Bin Dumper Placer</option>
+<option>Single Bin Dumper Placer</option>
+<option>Refuse Collector</option>
+<option>Compactor Body</option>
+<option>Hook Loader</option>
+<option>Tipper Body</option>
+<option>Sky Lifter</option>
+<option>Road Sweeping Machine</option>
+</optgroup>
+<optgroup label="Tankers">
+<option>Water Tanker</option>
+<option>Petroleum / Oil Tanker</option>
+<option>Sullage Tanker</option>
+</optgroup>
+<optgroup label="Suction and Jetting">
+<option>Super Sucker Machine (Suction Lorry)</option>
+<option>High Pressure Jetting Machine</option>
+<option>Jetting cum Suction Machine (Combo)</option>
+</optgroup>
+<optgroup label="Sanitation">
+<option>Mobile / Portable Toilets</option>
+</optgroup>
+<optgroup label="Other">
+<option>Body Repair / Refurbishment</option>
+<option>Other – Please describe below</option>
+</optgroup>
+</select>
+</div>
+<div class="fg"><label>Project Details</label><textarea placeholder="Describe your requirement — quantity, capacity, chassis type, timeline, and any special features needed..."></textarea></div>
+<button class="f-sub" onclick="formSubmit()">Send Enquiry</button>
+<p class="f-note">We typically respond within 24 hours on business days.</p>
+</div>
+</div>
+</section>
+<footer>
+<div class="ft">
+<div class="fb-brand">
+<a href="#" class="logo" style="font-size:1.45rem">ASR<span>.</span>BODY WORKS</a>
+<p>Plot No. 17,18,19, Udhayam Nagar Main Road, Kovilpakudi, Madurai – 625 018. NSIC Registered OEM Manufacturer. Est. 2013.</p>
+</div>
+<div class="fc"><h5>Products</h5><ul>
+<li><a href="#services">Suction Machines</a></li>
+<li><a href="#services">Jetting Machines</a></li>
+<li><a href="#services">Combo Units</a></li>
+<li><a href="#services">Tipper Bodies</a></li>
+<li><a href="#services">Dumper Bins</a></li>
+<li><a href="#services">Water Tankers</a></li>
+<li><a href="#services">Mobile Toilets</a></li>
+<li><a href="#services">Road Sweepers</a></li>
+</ul></div>
+<div class="fc"><h5>Company</h5><ul>
+<li><a href="#about">About Us</a></li>
+<li><a href="#certification">NSIC Certificate</a></li>
+<li><a href="#works">Works Done</a></li>
+<li><a href="#process">Our Process</a></li>
+<li><a href="#testimonials">Testimonials</a></li>
+</ul></div>
+<div class="fc"><h5>Contact</h5><ul>
+<li><a href="#">Kovilpakudi, Madurai 625 018</a></li>
+<li><a href="tel:+91XXXXXXXXXX">+91 XXXXX XXXXX</a></li>
+<li><a href="#">info@asrbodyworks.com</a></li>
+<li><a href="#">WhatsApp Us</a></li>
+<li><a href="#">UDYAM-TN-12-0010015</a></li>
+</ul></div>
+</div>
+<div class="fbot">
+<p>© 2025 <span>M/s. A.S.R. Body Works</span>. All rights reserved. Madurai, Tamil Nadu.</p>
+<p>NSIC Reg. No. <span>NSIC/GP/MAD/2016/0024224</span> · Valid till 01/11/2026</p>
+</div>
+</footer>
+<script>
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+document.querySelectorAll('.svc').forEach((el,i)=>el.style.transitionDelay=`${i*.04}s`);
+document.querySelectorAll('.tc').forEach((el,i)=>el.style.transitionDelay=`${i*.08}s`);
+document.querySelectorAll('.why-c').forEach((el,i)=>el.style.transitionDelay=`${i*.07}s`);
+function toggleMenu(){document.getElementById('mobMenu').classList.toggle('open')}
+function fw(btn,cat){document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.wi').forEach(item=>{item.style.display=(cat==='all'||item.dataset.cat===cat)?'':'none'})}
+function formSubmit(){const btn=document.querySelector('.f-sub');btn.textContent='✓ Enquiry Sent!';btn.style.background='#22c55e';setTimeout(()=>{btn.textContent='Send Enquiry';btn.style.background=''},3500)}
+window.addEventListener('scroll',()=>{document.querySelector('nav').style.background=window.scrollY>50?'rgba(9,11,13,.98)':'rgba(9,11,13,.9)'});
+</script>
 </body>
 </html>
